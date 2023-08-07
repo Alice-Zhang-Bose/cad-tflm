@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/array.h"
+#include "array.h"
 
 namespace tflite {
 namespace array_internal {

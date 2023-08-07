@@ -13,19 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/core/api/flatbuffer_conversions.h"
+#include "flatbuffer_conversions.h"
 
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 
-#include "flatbuffers/flatbuffers.h"  // from @flatbuffers
-#include "tensorflow/lite/core/api/error_reporter.h"
-#include "tensorflow/lite/core/c/builtin_op_data.h"
-#include "tensorflow/lite/core/c/common.h"
-#include "tensorflow/lite/kernels/internal/compatibility.h"
-#include "tensorflow/lite/schema/schema_generated.h"
-
+#include "../../micro/tools/make/downloads/flatbuffers/include/flatbuffers/flatbuffers.h"  // from @flatbuffers
+#include "error_reporter.h"
+#include "../c/builtin_op_data.h"
+#include "../c/common.h"
+#include "../../kernels/internal/compatibility.h"
+#include "../../schema/schema_generated.h"
 namespace tflite {
 
 namespace {

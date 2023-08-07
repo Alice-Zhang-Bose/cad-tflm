@@ -28,9 +28,9 @@ limitations under the License.
 // equivalent function for your own platform, create your own implementation
 // file, and place it in a subfolder with named after the OS you're targeting.
 // For example, see the Cortex M bare metal version in the
-// tensorflow/lite/micro/bluepill/debug_log.cc file.
+// bluepill/debug_log.cc file.
 
-#include "tensorflow/lite/micro/debug_log.h"
+#include "debug_log.h"
 
 #ifndef TF_LITE_STRIP_ERROR_STRINGS
 #include <cstdio>

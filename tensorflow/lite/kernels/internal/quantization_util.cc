@@ -19,8 +19,8 @@ limitations under the License.
 #include <cmath>
 #include <limits>
 
-#include "tensorflow/lite/kernels/internal/compatibility.h"
-#include "tensorflow/lite/kernels/internal/cppmath.h"
+#include "compatibility.h"
+#include "cppmath.h"
 
 namespace tflite {
 

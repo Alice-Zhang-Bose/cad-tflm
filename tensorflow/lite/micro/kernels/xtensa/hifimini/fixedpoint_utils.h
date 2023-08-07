@@ -23,8 +23,8 @@ limitations under the License.
 #include <cmath>
 #include <cstdint>
 
-#include "tensorflow/lite/kernels/internal/compatibility.h"
-#include "tensorflow/lite/micro/kernels/xtensa/xtensa.h"
+#include "../../../kernels/internal/compatibility.h"
+#include "xtensa.h"
 
 namespace tflite {
 

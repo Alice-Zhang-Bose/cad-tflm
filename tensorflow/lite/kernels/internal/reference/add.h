@@ -18,8 +18,8 @@ limitations under the License.
 #include <algorithm>
 #include <type_traits>
 
-#include "fixedpoint/fixedpoint.h"
-#include "tensorflow/lite/kernels/internal/common.h"
+#include "../../../micro/tools/make/downloads/gemmlowp/fixedpoint/fixedpoint.h"
+#include "../common.h"
 
 namespace tflite {
 

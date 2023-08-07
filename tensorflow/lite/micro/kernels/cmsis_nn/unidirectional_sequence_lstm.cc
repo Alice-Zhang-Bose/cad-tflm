@@ -21,13 +21,13 @@ limitations under the License.
 #include <limits>
 
 #include "Include/arm_nnfunctions.h"
-#include "tensorflow/lite/kernels/internal/quantization_util.h"
-#include "tensorflow/lite/kernels/kernel_util.h"
-#include "tensorflow/lite/micro/kernels/fully_connected.h"
-#include "tensorflow/lite/micro/kernels/kernel_util.h"
-#include "tensorflow/lite/micro/kernels/lstm_eval.h"
-#include "tensorflow/lite/micro/kernels/lstm_shared.h"
-#include "tensorflow/lite/micro/kernels/micro_tensor_utils.h"
+#include "../../kernels/internal/quantization_util.h"
+#include "../../kernels/kernel_util.h"
+#include "fully_connected.h"
+#include "kernel_util.h"
+#include "lstm_eval.h"
+#include "lstm_shared.h"
+#include "micro_tensor_utils.h"
 
 namespace tflite {
 
