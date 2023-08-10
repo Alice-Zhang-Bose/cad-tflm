@@ -27,13 +27,14 @@ limitations under the License.
 #include "../../micro_mutable_op_resolver.h"
 #include "../../system_setup.h"
 #include "../../../schema/schema_generated.h"
+#include "micro_features/yes_micro_features_data.h"
 
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
 const tflite::Model* model = nullptr;
 tflite::MicroInterpreter* interpreter = nullptr;
 TfLiteTensor* model_input = nullptr;
-FeatureProvider* feature_provider = nullptr;
+//FeatureProvider* feature_provider = nullptr;
 RecognizeCommands* recognizer = nullptr;
 int32_t previous_time = 0;
 
@@ -42,12 +43,13 @@ int32_t previous_time = 0;
 // determined by experimentation.
 constexpr int kTensorArenaSize = 10 * 1024;
 uint8_t tensor_arena[kTensorArenaSize];
-int8_t feature_buffer[kFeatureElementCount];
+int8_t* feature_buffer = (int8_t *)g_yes_micro_f2e59fea_nohash_1_data;
 int8_t* model_input_buffer = nullptr;
 }  // namespace
 
 // The name of this function is important for Arduino compatibility.
 void setup() {
+
   tflite::InitializeTarget();
 
   // Map the model into a usable data structure. This doesn't involve any
@@ -105,9 +107,9 @@ void setup() {
   // Prepare to access the audio spectrograms from a microphone or other source
   // that will provide the inputs to the neural network.
   // NOLINTNEXTLINE(runtime-global-variables)
-  static FeatureProvider static_feature_provider(kFeatureElementCount,
-                                                 feature_buffer);
-  feature_provider = &static_feature_provider;
+  //static FeatureProvider static_feature_provider(kFeatureElementCount,
+  //                                               feature_buffer);
+  //feature_provider = &static_feature_provider;
 
   static RecognizeCommands static_recognizer;
   recognizer = &static_recognizer;
@@ -134,6 +136,7 @@ void loop() {
   //}
   // Copy feature buffer to input tensor
   for (int i = 0; i < kFeatureElementCount; i++) {
+	//MicroPrintf("Feature buffer: %d", feature_buffer[i]);
     model_input_buffer[i] = feature_buffer[i];
   }
 
@@ -161,4 +164,5 @@ void loop() {
   // own function for a real application.
   RespondToCommand(current_time, found_command, score, is_new_command);
   MicroPrintf("end of loop function");
+
 }

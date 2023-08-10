@@ -82,6 +82,7 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
     *found_command = previous_top_label_;
     *score = 0;
     *is_new_command = false;
+    MicroPrintf("too few results");
     return kTfLiteOk;
   }
 
