@@ -65,8 +65,8 @@ struct StridedSliceContext {
 
 // This Op only supports 1-4D cases and since we use the reference 4D
 // implementation, the 1-3D tensors are mapped to 4D.
-const int kMaxDim = 4;
-
+//const int kMaxDim = 4;
+/*
 tflite::StridedSliceParams BuildStridedSliceParams(
     StridedSliceContext* op_context) {
   tflite::StridedSliceParams op_params{};
@@ -197,11 +197,11 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   }
   return kTfLiteOk;
 }
-
+*/
 }  // namespace
-
+/*
 TFLMRegistration Register_STRIDED_SLICE() {
   return tflite::micro::RegisterOp(Init, Prepare, Eval);
 }
-
+*/
 }  // namespace tflite

@@ -17,9 +17,11 @@ limitations under the License.
 #define SIGNAL_SRC_WINDOW_H_
 
 #include <stdint.h>
+#include <stddef.h>
+#include <stdint.h>
+#include "complex.h"
 
 namespace tflm_signal {
-
 // Applies a window function to an input signal
 //
 // * `input` and `window` must be both of size `size` elements and are
@@ -27,5 +29,6 @@ namespace tflm_signal {
 // * `shift` is a right shift to apply before writing the result to `output`.
 void ApplyWindow(const int16_t* input, const int16_t* window, int size,
                  int shift, int16_t* output);
+
 }  // namespace tflm_signal
 #endif  // SIGNAL_SRC_WINDOW_H_

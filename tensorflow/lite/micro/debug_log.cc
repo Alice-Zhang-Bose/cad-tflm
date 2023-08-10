@@ -28,7 +28,7 @@ limitations under the License.
 // equivalent function for your own platform, create your own implementation
 // file, and place it in a subfolder with named after the OS you're targeting.
 // For example, see the Cortex M bare metal version in the
-// bluepill/debug_log.cc file.
+// tensorflow/lite/micro/bluepill/debug_log.cc file.
 
 #include "debug_log.h"
 
@@ -36,11 +36,11 @@ limitations under the License.
 #include <cstdio>
 #endif
 
-extern "C" void DebugLog(const char* format, va_list args) {
+extern "C" void DebugLog(const char* s) {
 #ifndef TF_LITE_STRIP_ERROR_STRINGS
   // Reusing TF_LITE_STRIP_ERROR_STRINGS to disable DebugLog completely to get
   // maximum reduction in binary size. This is because we have DebugLog calls
   // via TF_LITE_CHECK that are not stubbed out by TF_LITE_REPORT_ERROR.
-  vfprintf(stderr, format, args);
+  fprintf(stderr, "%s", s);
 #endif
 }

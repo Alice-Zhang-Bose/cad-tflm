@@ -15,7 +15,7 @@ limitations under the License.
 // This file is generated. See:
 // tensorflow/lite/micro/kernels/test_data_generation/README.md
 
-#include "signal/micro/kernels/overlap_add_flexbuffers_generated_data.h"
+#include "overlap_add_flexbuffers_generated_data.h"
 
 const int g_gen_data_size_overlap_add_float = 26;
 const unsigned char g_gen_data_overlap_add_float[] = {

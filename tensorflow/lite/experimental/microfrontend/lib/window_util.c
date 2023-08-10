@@ -42,7 +42,7 @@ int WindowPopulateState(const struct WindowConfig* config,
 
   // Populate the window values.
   const float arg = M_PI * 2.0 / ((float)state->size);
-  int i;
+  unsigned int i;
   for (i = 0; i < state->size; ++i) {
     float float_value = 0.5 - (0.5 * cos(arg * (i + 0.5)));
     // Scale it to fixed point and round it.

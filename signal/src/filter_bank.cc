@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/filter_bank.h"
+#include "filter_bank.h"
 
 namespace tflite {
 namespace tflm_signal {

@@ -13,16 +13,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/window.h"
+#include "../../src/window.h"
 
 #include <stdint.h>
 
-#include "tensorflow/lite/kernels/internal/tensor_ctypes.h"
-#include "tensorflow/lite/kernels/kernel_util.h"
-#include "tensorflow/lite/micro/flatbuffer_utils.h"
-#include "tensorflow/lite/micro/kernels/kernel_util.h"
-#include "tensorflow/lite/micro/memory_helpers.h"
-#include "tensorflow/lite/micro/micro_utils.h"
+#include "../../../tensorflow/lite/kernels/internal/tensor_ctypes.h"
+#include "../../../tensorflow/lite/kernels/kernel_util.h"
+#include "../../../tensorflow/lite/micro/flatbuffer_utils.h"
+#include "../../../tensorflow/lite/micro/kernels/kernel_util.h"
+#include "../../../tensorflow/lite/micro/memory_helpers.h"
+#include "../../../tensorflow/lite/micro/micro_utils.h"
 
 namespace tflite {
 namespace {

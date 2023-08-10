@@ -16,14 +16,14 @@ limitations under the License.
 #ifndef SIGNAL_SRC_KISS_FFT_WRAPPERS_KISS_FFT_INT16_H_
 #define SIGNAL_SRC_KISS_FFT_WRAPPERS_KISS_FFT_INT16_H_
 
-#include "signal/src/kiss_fft_wrappers/kiss_fft_common.h"
+#include "kiss_fft_common.h"
 // Wrap floating point kiss fft in its own namespace. Enables us to link an
 // application with different kiss fft resolutions
 // (16/32 bit integer, float, double) without getting a linker error.
 #define FIXED_POINT 16
 namespace kiss_fft_fixed16 {
-#include "kiss_fft.h"
-#include "tools/kiss_fftr.h"
+#include "../../../tensorflow/lite/micro/tools/make/downloads/kissfft/kiss_fft.h"
+#include "../../../tensorflow/lite/micro/tools/make/downloads/kissfft/tools/kiss_fftr.h"
 }  // namespace kiss_fft_fixed16
 #undef FIXED_POINT
 

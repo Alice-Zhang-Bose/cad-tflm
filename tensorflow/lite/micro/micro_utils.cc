@@ -20,7 +20,7 @@ limitations under the License.
 #include <limits>
 
 #include "../core/c/common.h"
-#include "../kernels/internal/.h"
+#include "../kernels/internal/compatibility.h"
 #include "../kernels/op_macros.h"
 #include "memory_helpers.h"
 #include "micro_log.h"

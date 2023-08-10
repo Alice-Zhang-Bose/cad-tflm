@@ -52,7 +52,7 @@ void setup() {
 
   // Map the model into a usable data structure. This doesn't involve any
   // copying or parsing, it's a very lightweight operation.
-  model = tflite::GetModel(g_micro_speech_model_data);
+  model = tflite::GetModel(micro_speech_tflite);
   if (model->version() != TFLITE_SCHEMA_VERSION) {
     MicroPrintf(
         "Model provided is schema version %d not equal "
@@ -119,20 +119,19 @@ void setup() {
 void loop() {
   // Fetch the spectrogram for the current time.
   const int32_t current_time = LatestAudioTimestamp();
-  int how_many_new_slices = 0;
-  TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
-      previous_time, current_time, &how_many_new_slices);
-  if (feature_status != kTfLiteOk) {
-    MicroPrintf("Feature generation failed");
-    return;
-  }
+  //int how_many_new_slices = 0;
+  //TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
+  //    previous_time, current_time, &how_many_new_slices);
+  //if (feature_status != kTfLiteOk) {
+  //  MicroPrintf("Feature generation failed");
+  //  return;
+  //}
   previous_time = current_time;
   // If no new audio samples have been received since last time, don't bother
   // running the network model.
-  if (how_many_new_slices == 0) {
-    return;
-  }
-
+  //if (how_many_new_slices == 0) {
+  //  return;
+  //}
   // Copy feature buffer to input tensor
   for (int i = 0; i < kFeatureElementCount; i++) {
     model_input_buffer[i] = feature_buffer[i];
@@ -161,4 +160,5 @@ void loop() {
   // just prints to the error console, but you should replace this with your
   // own function for a real application.
   RespondToCommand(current_time, found_command, score, is_new_command);
+  MicroPrintf("end of loop function");
 }

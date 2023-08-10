@@ -101,7 +101,7 @@ typedef struct TfLiteIntArray {
   // https://github.com/google/re2/commit/b94b7cd42e9f02673cd748c1ac1d16db4052514c
   int data[0];
 #else
-  int data[];
+  int data[1];
 #endif
 } TfLiteIntArray;
 
@@ -145,7 +145,7 @@ typedef struct TfLiteFloatArray {
   // https://github.com/google/re2/commit/b94b7cd42e9f02673cd748c1ac1d16db4052514c
   float data[0];
 #else
-  float data[];
+  float data[1];
 #endif
 } TfLiteFloatArray;
 

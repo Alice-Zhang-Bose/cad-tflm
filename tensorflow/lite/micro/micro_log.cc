@@ -17,33 +17,31 @@ limitations under the License.
 
 #include <cstdarg>
 #include <cstdint>
+#include <new>
 
 #if !defined(TF_LITE_STRIP_ERROR_STRINGS)
 #include "debug_log.h"
+#include "micro_string.h"
 #endif
 
+void Log(const char* format, va_list args) {
 #if !defined(TF_LITE_STRIP_ERROR_STRINGS)
-namespace {
-
-void VDebugLog(const char* format, ...) {
-  va_list args;
-  va_start(args, format);
-  DebugLog(format, args);
-  va_end(args);
+  // Only pulling in the implementation of this function for builds where we
+  // expect to make use of it to be extra cautious about not increasing the code
+  // size.
+  static constexpr int kMaxLogLen = 256;
+  char log_buffer[kMaxLogLen];
+  MicroVsnprintf(log_buffer, kMaxLogLen, format, args);
+  DebugLog(log_buffer);
+  DebugLog("\r\n");
+#endif
 }
 
-}  // namespace
-
-void VMicroPrintf(const char* format, va_list args) {
-  DebugLog(format, args);
-  // TODO(b/290051015): remove "\r\n"
-  VDebugLog("\r\n");
-}
-
+#if !defined(TF_LITE_STRIP_ERROR_STRINGS)
 void MicroPrintf(const char* format, ...) {
   va_list args;
   va_start(args, format);
-  VMicroPrintf(format, args);
+  Log(format, args);
   va_end(args);
 }
-#endif  // !defined(TF_LITE_STRIP_ERROR_STRINGS)
+#endif

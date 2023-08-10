@@ -13,11 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/kiss_fft_wrappers/kiss_fft_common.h"
+#include "kiss_fft_common.h"
 
 #define FIXED_POINT 16
 namespace kiss_fft_fixed16 {
-#include "kiss_fft.c"
-#include "tools/kiss_fftr.c"
+#include "../../../tensorflow/lite/micro/tools/make/downloads/kissfft/kiss_fft.c"
+#include "../../../tensorflow/lite/micro/tools/make/downloads/kissfft/tools/kiss_fftr.c"
 }  // namespace kiss_fft_fixed16
 #undef FIXED_POINT

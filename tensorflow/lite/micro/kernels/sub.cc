@@ -30,7 +30,7 @@ limitations under the License.
 #include "../micro_log.h"
 
 namespace tflite {
-
+/*
 void* SubInit(TfLiteContext* context, const char* buffer, size_t length) {
   TFLITE_DCHECK(context->AllocatePersistentBuffer != nullptr);
   return context->AllocatePersistentBuffer(context, sizeof(OpDataSub));
@@ -164,5 +164,5 @@ TfLiteStatus SubEval(TfLiteContext* context, TfLiteNode* node) {
 TFLMRegistration Register_SUB() {
   return tflite::micro::RegisterOp(SubInit, SubPrepare, SubEval);
 }
-
+*/
 }  // namespace tflite

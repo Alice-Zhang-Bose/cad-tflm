@@ -29,7 +29,7 @@ limitations under the License.
 
 namespace tflite {
 namespace {
-
+/*
 void* LogisticInit(TfLiteContext* context, const char* buffer, size_t length) {
   TFLITE_DCHECK(context->AllocatePersistentBuffer != nullptr);
   return context->AllocatePersistentBuffer(context, sizeof(OpDataLogistic));
@@ -102,10 +102,11 @@ TfLiteStatus LogisticEval(TfLiteContext* context, TfLiteNode* node) {
   }
   return kTfLiteOk;
 }
-
+*/
 }  // namespace
-
+/*
 TFLMRegistration Register_LOGISTIC() {
   return tflite::micro::RegisterOp(LogisticInit, LogisticPrepare, LogisticEval);
 }
+*/
 }  // namespace tflite

@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "tensorflow/lite/micro/tflite_bridge/micro_error_reporter.h"
+#include "micro_error_reporter.h"
 
 #include <cstdarg>
 #include <cstdint>
@@ -36,7 +36,7 @@ ErrorReporter* GetMicroErrorReporter() {
 }
 
 int MicroErrorReporter::Report(const char* format, va_list args) {
-  VMicroPrintf(format, args);
+  Log(format, args);
   return 0;
 }
 

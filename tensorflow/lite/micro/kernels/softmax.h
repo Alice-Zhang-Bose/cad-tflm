@@ -42,9 +42,11 @@ TFLMRegistration Register_SOFTMAX();
 // int8 input and int16 output.
 TFLMRegistration Register_SOFTMAX_INT8_INT16();
 #else
+/*
 inline TFLMRegistration Register_SOFTMAX_INT8_INT16() {
   return Register_SOFTMAX();
 }
+*/
 #endif
 
 #if defined(CMSIS_NN)

@@ -15,7 +15,7 @@ limitations under the License.
 // This file is generated. See:
 // tensorflow/lite/micro/kernels/test_data_generation/README.md
 
-#include "signal/micro/kernels/window_flexbuffers_generated_data.h"
+#include "window_flexbuffers_generated_data.h"
 
 const int g_gen_data_size_window_shift_12 = 16;
 const unsigned char g_gen_data_window_shift_12[] = {

@@ -27,7 +27,7 @@ limitations under the License.
 #include "../kernels/internal/tensor_ctypes.h"
 #include "micro_mutable_op_resolver.h"
 #include "micro_utils.h"
-#include "tensorflow/lite/portable_type_to_tflitetype.h"
+#include "../portable_type_to_tflitetype.h"
 #include "../schema/schema_generated.h"
 
 namespace tflite {

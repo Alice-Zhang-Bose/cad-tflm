@@ -19,7 +19,7 @@ limitations under the License.
 #include <stddef.h>
 #include <stdint.h>
 
-#include "signal/src/complex.h"
+#include "complex.h"
 
 // TODO(b/286250473): remove namespace once de-duped libraries
 namespace tflm_signal {

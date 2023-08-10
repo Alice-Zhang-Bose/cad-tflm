@@ -15,7 +15,7 @@ limitations under the License.
 // This file is generated. See:
 // tensorflow/lite/micro/kernels/test_data_generation/README.md
 
-#include "signal/micro/kernels/framer_flexbuffers_generated_data.h"
+#include "framer_flexbuffers_generated_data.h"
 
 const int g_gen_data_size_3_1_0_framer = 46;
 const unsigned char g_gen_data_3_1_0_framer[] = {

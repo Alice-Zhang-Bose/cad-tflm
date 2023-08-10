@@ -13,9 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/log.h"
+#include "log.h"
 
-#include "signal/src/msb.h"
+#include "msb.h"
 
 namespace tflite {
 namespace tflm_signal {

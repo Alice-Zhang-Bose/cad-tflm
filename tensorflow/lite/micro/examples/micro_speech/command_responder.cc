@@ -25,4 +25,7 @@ void RespondToCommand(int32_t current_time, const char* found_command,
   if (is_new_command) {
     MicroPrintf("Heard %s (%d) @%dms", found_command, score, current_time);
   }
+  else {
+    MicroPrintf("No response");
+  }
 }

@@ -23,7 +23,7 @@ limitations under the License.
 namespace tflite {
 
 namespace {
-
+/*
 TfLiteStatus AverageEval(TfLiteContext* context, TfLiteNode* node) {
   TFLITE_DCHECK(node->builtin_data != nullptr);
   auto* params = reinterpret_cast<TfLitePoolParams*>(node->builtin_data);
@@ -95,9 +95,10 @@ void* Init(TfLiteContext* context, const char* buffer, size_t length) {
   TFLITE_DCHECK(context->AllocatePersistentBuffer != nullptr);
   return context->AllocatePersistentBuffer(context, sizeof(OpDataPooling));
 }
-
+*/
 }  // namespace
 
+/*
 TFLMRegistration Register_AVERAGE_POOL_2D() {
   return tflite::micro::RegisterOp(Init, PoolingPrepare, AverageEval);
 }
@@ -105,5 +106,5 @@ TFLMRegistration Register_AVERAGE_POOL_2D() {
 TFLMRegistration Register_MAX_POOL_2D() {
   return tflite::micro::RegisterOp(Init, PoolingPrepare, MaxEval);
 }
-
+*/
 }  // namespace tflite

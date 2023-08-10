@@ -16,9 +16,9 @@ limitations under the License.
 #include <stddef.h>
 #include <stdint.h>
 
-#include "signal/src/complex.h"
-#include "signal/src/irfft.h"
-#include "signal/src/kiss_fft_wrappers/kiss_fft_float.h"
+#include "complex.h"
+#include "irfft.h"
+#include "kiss_fft_wrappers/kiss_fft_float.h"
 
 // TODO(b/286250473): remove namespace once de-duped libraries
 namespace tflite {

@@ -13,8 +13,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/msb.h"
-#include "signal/src/square_root.h"
+#include "msb.h"
+#include "square_root.h"
 
 namespace tflite {
 namespace tflm_signal {

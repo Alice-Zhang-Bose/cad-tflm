@@ -83,11 +83,11 @@ TFLMRegistration Register_FULLY_CONNECTED_INT8();
 // that do not have any specialized implementations, the only goal here is to
 // define fallback implementation that allow reference kernels to still be used
 // from applications that call a more specific kernel variant.
-
+/*
 inline TFLMRegistration Register_FULLY_CONNECTED_INT8() {
   return Register_FULLY_CONNECTED();
 }
-
+*/
 #endif
 
 #if defined(CMSIS_NN)

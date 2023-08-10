@@ -15,8 +15,8 @@ limitations under the License.
 #ifndef TENSORFLOW_LITE_MICRO_KERNELS_MICRO_OPS_H_
 #define TENSORFLOW_LITE_MICRO_KERNELS_MICRO_OPS_H_
 
-//#include "signal/micro/kernels/irfft.h"
-//#include "signal/micro/kernels/rfft.h"
+#include "../../signal/micro/kernels/irfft.h"
+#include "../../signal/micro/kernels/rfft.h"
 #include "../../core/c/common.h"
 
 // Forward declaration of all micro op kernel registration methods. These

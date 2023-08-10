@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/max_abs.h"
+#include "max_abs.h"
 
 // TODO(b/286250473): remove namespace once de-duped libraries
 namespace tflite {

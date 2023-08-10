@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "signal/src/filter_bank_spectral_subtraction.h"
+#include "filter_bank_spectral_subtraction.h"
 
 namespace tflite {
 namespace tflm_signal {

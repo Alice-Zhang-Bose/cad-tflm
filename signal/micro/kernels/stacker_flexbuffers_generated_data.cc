@@ -15,7 +15,7 @@ limitations under the License.
 // This file is generated. See:
 // tensorflow/lite/micro/kernels/test_data_generation/README.md
 
-#include "signal/micro/kernels/stacker_flexbuffers_generated_data.h"
+#include "stacker_flexbuffers_generated_data.h"
 
 const int g_gen_data_size_stacker_3_channels_step_1 = 88;
 const unsigned char g_gen_data_stacker_3_channels_step_1[] = {

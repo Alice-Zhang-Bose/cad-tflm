@@ -33,14 +33,14 @@ namespace {
 // the OutputShapeTensor. However, since TFLM does not support dynamic tensors,
 // the TFLM implementation ignores input tensor 0 and the only inputs we care
 // about are kFilterTensor, kInputTensor and kBiasTensor.
-constexpr int kFilterTensor = 1;
-constexpr int kInputTensor = 2;
-constexpr int kBiasTensor = 3;
-constexpr int kOutputTensor = 0;
-
-// Conv is quantized along dimension 0:
-// https://www.tensorflow.org/lite/performance/quantization_spec
-constexpr int kConvQuantizedDimension = 0;
+//constexpr int kFilterTensor = 1;
+//constexpr int kInputTensor = 2;
+//constexpr int kBiasTensor = 3;
+//constexpr int kOutputTensor = 0;
+//
+//// Conv is quantized along dimension 0:
+//// https://www.tensorflow.org/lite/performance/quantization_spec
+//constexpr int kConvQuantizedDimension = 0;
 
 struct OpData {
   ConvParams params;
@@ -56,7 +56,7 @@ struct OpData {
   int32_t* per_channel_output_multiplier;
   int32_t* per_channel_output_shift;
 };
-
+/*
 inline PaddingType RuntimePaddingType(TfLitePadding padding) {
   switch (padding) {
     case TfLitePadding::kTfLitePaddingSame:
@@ -342,11 +342,11 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   }
   return kTfLiteOk;
 }
-
+*/
 }  // namespace
-
+/*
 TFLMRegistration Register_TRANSPOSE_CONV() {
   return tflite::micro::RegisterOp(Init, Prepare, Eval);
 }
-
+*/
 }  // namespace tflite

@@ -49,8 +49,8 @@ TfLiteStatus XtensaCalculateOpDataFullyConnected(
     OpDataFullyConnected* data) {
   if (data_type != kTfLiteFloat32) {
     double real_multiplier = 0.0;
-    TF_LITE_ENSURE_STATUS(GetQuantizedConvolutionMultipler(
-        context, input, filter, bias, output, &real_multiplier));
+    //TF_LITE_ENSURE_STATUS(GetQuantizedConvolutionMultipler(
+    //    context, input, filter, bias, output, &real_multiplier));
 #if defined(HIFIMINI)
     if (input->type == kTfLiteInt8) {
       QuantizeMultiplierForInt24(real_multiplier, &data->output_multiplier,
@@ -73,10 +73,12 @@ TfLiteStatus XtensaCalculateOpDataFullyConnected(
     data->input_zero_point = input->params.zero_point;
     data->filter_zero_point = filter->params.zero_point;
     data->output_zero_point = output->params.zero_point;
-
+// !! COMMENTING OUT DUE TO ERRORS
+/*
     return CalculateActivationRangeQuantized(context, activation, output,
                                              &data->output_activation_min,
                                              &data->output_activation_max);
+*/
   }
   return kTfLiteOk;
 }

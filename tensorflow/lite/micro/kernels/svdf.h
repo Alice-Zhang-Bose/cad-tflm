@@ -92,7 +92,7 @@ TFLMRegistration Register_SVDF_INT8();
 // define fallback implementation that allow reference kernels to still be used
 // from applications that call a more specific kernel variant.
 
-inline TFLMRegistration Register_SVDF_INT8() { return Register_SVDF(); }
+//inline TFLMRegistration Register_SVDF_INT8() { return Register_SVDF(); }
 
 #endif
 }  // namespace tflite
