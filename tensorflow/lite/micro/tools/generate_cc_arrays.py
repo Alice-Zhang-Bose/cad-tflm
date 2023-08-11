@@ -23,7 +23,7 @@ import os
 import struct
 import wave
 import numpy as np
-import pdb
+
 from PIL import Image
 
 
