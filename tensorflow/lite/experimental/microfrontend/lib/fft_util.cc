@@ -18,6 +18,9 @@ limitations under the License.
 
 #include "kiss_fft_int16.h"
 
+int16_t fft_input_buffer[1024];
+complex_int16_t fft_output_buffer[2048];
+
 int FftPopulateState(struct FftState* state, size_t input_size) {
   state->input_size = input_size;
   state->fft_size = 1;
@@ -25,15 +28,19 @@ int FftPopulateState(struct FftState* state, size_t input_size) {
     state->fft_size <<= 1;
   }
 
-  state->input = reinterpret_cast<int16_t*>(
-      malloc(state->fft_size * sizeof(*state->input)));
+  // *state->input = int16_t
+  // *state->output = complex_int16_t
+  // state->fft_wize = 512
+
+  state->input = reinterpret_cast<int16_t*>(fft_input_buffer);
+     // malloc(state->fft_size * sizeof(*state->input)));
   if (state->input == nullptr) {
     fprintf(stderr, "Failed to alloc fft input buffer\n");
     return 0;
   }
 
-  state->output = reinterpret_cast<complex_int16_t*>(
-      malloc((state->fft_size / 2 + 1) * sizeof(*state->output) * 2));
+  state->output = reinterpret_cast<complex_int16_t*>(fft_output_buffer);
+      //malloc((state->fft_size / 2 + 1) * sizeof(*state->output) * 2));
   if (state->output == nullptr) {
     fprintf(stderr, "Failed to alloc fft output buffer\n");
     return 0;

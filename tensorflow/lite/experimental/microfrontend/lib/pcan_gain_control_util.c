@@ -19,6 +19,8 @@ limitations under the License.
 
 #define kint16max 0x00007FFF
 
+int16_t gain_lut_buffer[250];
+
 void PcanGainControlFillConfigWithDefaults(
     struct PcanGainControlConfig* config) {
   config->enable_pcan = 0;
@@ -52,7 +54,7 @@ int PcanGainControlPopulateState(const struct PcanGainControlConfig* config,
   }
   state->noise_estimate = noise_estimate;
   state->num_channels = num_channels;
-  state->gain_lut = malloc(kWideDynamicFunctionLUTSize * sizeof(int16_t));
+  state->gain_lut = gain_lut_buffer; //malloc(kWideDynamicFunctionLUTSize * sizeof(int16_t));
   if (state->gain_lut == NULL) {
     fprintf(stderr, "Failed to allocate gain LUT\n");
     return 0;

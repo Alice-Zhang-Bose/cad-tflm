@@ -24,6 +24,10 @@ limitations under the License.
 #define M_PI 3.14159265358979323846
 #endif
 
+int16_t window_coefficient_buffer[960];
+int16_t window_input_buffer[960];
+int16_t window_output_buffer[960];
+
 void WindowFillConfigWithDefaults(struct WindowConfig* config) {
   config->size_ms = 25;
   config->step_size_ms = 10;
@@ -34,7 +38,9 @@ int WindowPopulateState(const struct WindowConfig* config,
   state->size = config->size_ms * sample_rate / 1000;
   state->step = config->step_size_ms * sample_rate / 1000;
 
-  state->coefficients = malloc(state->size * sizeof(*state->coefficients));
+  // state->size = 480
+  // *state->coefficients, *state->input, *state->output = int16_t
+  state->coefficients = window_coefficient_buffer; //malloc(state->size * sizeof(*state->coefficients));
   if (state->coefficients == NULL) {
     fprintf(stderr, "Failed to allocate window coefficients\n");
     return 0;
@@ -51,13 +57,13 @@ int WindowPopulateState(const struct WindowConfig* config,
   }
 
   state->input_used = 0;
-  state->input = malloc(state->size * sizeof(*state->input));
+  state->input = window_input_buffer; //malloc(state->size * sizeof(*state->input));
   if (state->input == NULL) {
     fprintf(stderr, "Failed to allocate window input\n");
     return 0;
   }
 
-  state->output = malloc(state->size * sizeof(*state->output));
+  state->output = window_output_buffer; //malloc(state->size * sizeof(*state->output));
   if (state->output == NULL) {
     fprintf(stderr, "Failed to allocate window output\n");
     return 0;

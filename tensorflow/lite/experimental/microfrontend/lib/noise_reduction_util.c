@@ -16,6 +16,8 @@ limitations under the License.
 
 #include <stdio.h>
 
+uint32_t noise_estimate_buffer[160];
+
 void NoiseReductionFillConfigWithDefaults(struct NoiseReductionConfig* config) {
   config->smoothing_bits = 10;
   config->even_smoothing = 0.025;
@@ -32,7 +34,9 @@ int NoiseReductionPopulateState(const struct NoiseReductionConfig* config,
   state->min_signal_remaining =
       config->min_signal_remaining * (1 << kNoiseReductionBits);
   state->num_channels = num_channels;
-  state->estimate = calloc(state->num_channels, sizeof(*state->estimate));
+  // num_channels = 40
+  // *state->estimate = uint32_t
+  state->estimate = noise_estimate_buffer; //calloc(state->num_channels, sizeof(*state->estimate));
   if (state->estimate == NULL) {
     fprintf(stderr, "Failed to alloc estimate buffer\n");
     return 0;

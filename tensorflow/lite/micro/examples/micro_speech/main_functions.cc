@@ -28,22 +28,23 @@ limitations under the License.
 #include "../../system_setup.h"
 #include "../../../schema/schema_generated.h"
 #include "micro_features/yes_micro_features_data.h"
+#include "micro_features/no_micro_features_data.h"
 
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
 const tflite::Model* model = nullptr;
 tflite::MicroInterpreter* interpreter = nullptr;
 TfLiteTensor* model_input = nullptr;
-//FeatureProvider* feature_provider = nullptr;
+FeatureProvider* feature_provider = nullptr;
 RecognizeCommands* recognizer = nullptr;
 int32_t previous_time = 0;
 
 // Create an area of memory to use for input, output, and intermediate arrays.
 // The size of this will depend on the model you're using, and may need to be
 // determined by experimentation.
-constexpr int kTensorArenaSize = 10 * 1024;
+constexpr int kTensorArenaSize = 15 * 1024;
 uint8_t tensor_arena[kTensorArenaSize];
-int8_t* feature_buffer = (int8_t *)g_yes_micro_f2e59fea_nohash_1_data;
+int8_t feature_buffer[kFeatureElementCount];// = (int8_t *)g_no_micro_f9643d42_nohash_4_data;
 int8_t* model_input_buffer = nullptr;
 }  // namespace
 
@@ -107,9 +108,9 @@ void setup() {
   // Prepare to access the audio spectrograms from a microphone or other source
   // that will provide the inputs to the neural network.
   // NOLINTNEXTLINE(runtime-global-variables)
-  //static FeatureProvider static_feature_provider(kFeatureElementCount,
-  //                                               feature_buffer);
-  //feature_provider = &static_feature_provider;
+  static FeatureProvider static_feature_provider(kFeatureElementCount,
+                                                 feature_buffer);
+  feature_provider = &static_feature_provider;
 
   static RecognizeCommands static_recognizer;
   recognizer = &static_recognizer;
@@ -121,13 +122,13 @@ void setup() {
 void loop() {
   // Fetch the spectrogram for the current time.
   const int32_t current_time = LatestAudioTimestamp();
-  //int how_many_new_slices = 0;
-  //TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
-  //    previous_time, current_time, &how_many_new_slices);
-  //if (feature_status != kTfLiteOk) {
-  //  MicroPrintf("Feature generation failed");
-  //  return;
-  //}
+  int how_many_new_slices = 0;
+  TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
+      previous_time, current_time, &how_many_new_slices);
+  if (feature_status != kTfLiteOk) {
+    MicroPrintf("Feature generation failed");
+    return;
+  }
   previous_time = current_time;
   // If no new audio samples have been received since last time, don't bother
   // running the network model.
@@ -163,6 +164,5 @@ void loop() {
   // just prints to the error console, but you should replace this with your
   // own function for a real application.
   RespondToCommand(current_time, found_command, score, is_new_command);
-  MicroPrintf("end of loop function");
 
 }
