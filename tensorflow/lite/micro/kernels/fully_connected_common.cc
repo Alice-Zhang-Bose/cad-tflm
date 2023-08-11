@@ -59,6 +59,7 @@ TfLiteStatus CalculateOpDataFullyConnected(
     OpDataFullyConnected* data) {
   if (data_type != kTfLiteFloat32) {
     double real_multiplier = 0.0;
+    // !! COMMENTING OUT DUE TO ERRORS
     //TF_LITE_ENSURE_STATUS(GetQuantizedConvolutionMultipler(
     //    context, input, filter, bias, output, &real_multiplier));
     QuantizeMultiplier(real_multiplier, &data->output_multiplier,
