@@ -59,9 +59,8 @@ TfLiteStatus CalculateOpDataFullyConnected(
     OpDataFullyConnected* data) {
   if (data_type != kTfLiteFloat32) {
     double real_multiplier = 0.0;
-    // !! COMMENTING OUT DUE TO ERRORS
-    //TF_LITE_ENSURE_STATUS(GetQuantizedConvolutionMultipler(
-    //    context, input, filter, bias, output, &real_multiplier));
+    TF_LITE_ENSURE_STATUS(GetQuantizedConvolutionMultipler(
+        context, input, filter, bias, output, &real_multiplier));
     QuantizeMultiplier(real_multiplier, &data->output_multiplier,
                        &data->output_shift);
 
@@ -74,12 +73,10 @@ TfLiteStatus CalculateOpDataFullyConnected(
     data->input_zero_point = input->params.zero_point;
     data->filter_zero_point = filter->params.zero_point;
     data->output_zero_point = output->params.zero_point;
-// !! COMMENTING OUT DUE TO ERRORS
-/*
     return CalculateActivationRangeQuantized(context, activation, output,
                                              &data->output_activation_min,
                                              &data->output_activation_max);
-*/
+
   }
   return kTfLiteOk;
 }

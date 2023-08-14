@@ -44,7 +44,9 @@ int32_t previous_time = 0;
 // determined by experimentation.
 constexpr int kTensorArenaSize = 15 * 1024;
 uint8_t tensor_arena[kTensorArenaSize];
-int8_t feature_buffer[kFeatureElementCount];// = (int8_t *)g_no_micro_f9643d42_nohash_4_data;
+int8_t feature_buffer[kFeatureElementCount];
+//int8_t* feature_buffer = (int8_t *)g_no_micro_f9643d42_nohash_4_data;
+//int8_t* feature_buffer = (int8_t *)g_yes_micro_f2e59fea_nohash_1_data;
 int8_t* model_input_buffer = nullptr;
 }  // namespace
 

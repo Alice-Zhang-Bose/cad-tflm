@@ -109,9 +109,7 @@ TfLiteStatus CalculateOpDataDepthwiseConv(
   TF_LITE_ENSURE(context, output != nullptr);
 
   // Note that quantized inference requires that all tensors have their
-  // parameters set. This is usually done during quantized training.
-  // !! COMMENTING OUT DUE TO ERROR
-  /*
+  // parameters set. This is usually done during quantized training. 
   if (data_type != kTfLiteFloat32) {
     int output_channels = filter->dims->data[kDepthwiseConvQuantizedDimension];
 
@@ -122,7 +120,7 @@ TfLiteStatus CalculateOpDataDepthwiseConv(
         data->per_channel_output_multiplier, data->per_channel_output_shift,
         output_channels));
   }
-*/
+
   data->input_zero_point = input->params.zero_point;
   data->filter_zero_point = filter->params.zero_point;
   data->output_zero_point = output->params.zero_point;

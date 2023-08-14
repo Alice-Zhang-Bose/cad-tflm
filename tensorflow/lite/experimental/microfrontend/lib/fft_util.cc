@@ -20,6 +20,7 @@ limitations under the License.
 
 int16_t fft_input_buffer[1024];
 complex_int16_t fft_output_buffer[2048];
+int16_t scratch_buffer[2836];
 
 int FftPopulateState(struct FftState* state, size_t input_size) {
   state->input_size = input_size;
@@ -54,7 +55,7 @@ int FftPopulateState(struct FftState* state, size_t input_size) {
     fprintf(stderr, "Kiss memory sizing failed.\n");
     return 0;
   }
-  state->scratch = malloc(scratch_size);
+  state->scratch = scratch_buffer;
   if (state->scratch == nullptr) {
     fprintf(stderr, "Failed to alloc fft scratch buffer\n");
     return 0;
