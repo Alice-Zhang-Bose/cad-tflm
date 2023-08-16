@@ -24,9 +24,9 @@ limitations under the License.
 #define M_PI 3.14159265358979323846
 #endif
 
-int16_t window_coefficient_buffer[960];
-int16_t window_input_buffer[960];
-int16_t window_output_buffer[960];
+static int16_t window_coefficient_buffer[960];
+static int16_t window_input_buffer[960];
+static int16_t window_output_buffer[960];
 
 void WindowFillConfigWithDefaults(struct WindowConfig* config) {
   config->size_ms = 25;

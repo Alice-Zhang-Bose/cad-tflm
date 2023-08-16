@@ -16,7 +16,7 @@ limitations under the License.
 
 #include <stdio.h>
 
-uint32_t noise_estimate_buffer[160];
+static uint32_t noise_estimate_buffer[160];
 
 void NoiseReductionFillConfigWithDefaults(struct NoiseReductionConfig* config) {
   config->smoothing_bits = 10;

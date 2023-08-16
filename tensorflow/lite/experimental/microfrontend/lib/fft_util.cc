@@ -18,8 +18,8 @@ limitations under the License.
 
 #include "kiss_fft_int16.h"
 
-int16_t fft_input_buffer[1024];
-complex_int16_t fft_output_buffer[2048];
+static int16_t fft_input_buffer[1024];
+static complex_int16_t fft_output_buffer[2048];
 int16_t scratch_buffer[2836];
 
 int FftPopulateState(struct FftState* state, size_t input_size) {
