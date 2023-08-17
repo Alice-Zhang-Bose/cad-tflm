@@ -72,18 +72,21 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
     previous_results_.pop_front();
   }
 
+
   // If there are too few results, assume the result will be unreliable and
   // bail.
   const int64_t how_many_results = previous_results_.size();
+
   const int64_t earliest_time = previous_results_.front().time_;
   const int64_t samples_duration = current_time_ms - earliest_time;
   if ((how_many_results < minimum_count_) ||
       (samples_duration < (average_window_duration_ms_ / 4))) {
+	 /*
     *found_command = previous_top_label_;
     *score = 0;
     *is_new_command = false;
     MicroPrintf("too few results");
-    return kTfLiteOk;
+    return kTfLiteOk;*/
   }
 
   // Calculate the average score across all the results in the window.

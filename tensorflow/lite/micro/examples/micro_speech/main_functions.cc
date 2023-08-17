@@ -123,6 +123,26 @@ void setup() {
 // The name of this function is important for Arduino compatibility.
 void loop() {
   // Fetch the spectrogram for the current time.
+//Testing feature generator -- added code to test the feature provider from mock_feature_test.cc
+	int how_many_new_slices = 0;
+	const int32_t current_time = LatestAudioTimestamp();
+	  TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
+	      4000, 4970, &how_many_new_slices);
+	  if (feature_status != kTfLiteOk || how_many_new_slices != kFeatureSliceCount) {
+	     MicroPrintf("Feature generation failed");
+	     return;
+	   }
+	  for (int i = 0; i < kFeatureElementCount; ++i) {
+		  //MicroPrintf("%d", feature_buffer[i]);
+	     if(g_no_micro_f9643d42_nohash_4_data[i]!=
+	                             feature_buffer[i]){
+	    	 MicroPrintf("Fail");
+	     }
+	   }
+//Testing feature generator -- end of added code for testing
+
+
+/*
   const int32_t current_time = LatestAudioTimestamp();
   int how_many_new_slices = 0;
   TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
@@ -137,6 +157,8 @@ void loop() {
   //if (how_many_new_slices == 0) {
   //  return;
   //}
+    */
+
   // Copy feature buffer to input tensor
   for (int i = 0; i < kFeatureElementCount; i++) {
 	//MicroPrintf("Feature buffer: %d", feature_buffer[i]);

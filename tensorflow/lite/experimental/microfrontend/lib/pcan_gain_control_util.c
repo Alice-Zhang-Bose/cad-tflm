@@ -19,7 +19,7 @@ limitations under the License.
 
 #define kint16max 0x00007FFF
 
-int16_t gain_lut_buffer[250];
+static int16_t gain_lut_buffer[250];
 
 void PcanGainControlFillConfigWithDefaults(
     struct PcanGainControlConfig* config) {

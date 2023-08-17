@@ -21,15 +21,15 @@ limitations under the License.
 #define kFilterbankIndexAlignment 4
 #define kFilterbankChannelBlockSize 4
 
-int16_t channel_frequency_starts_buffer[82];
-int16_t channel_weight_starts_buffer[82];
-int16_t channel_widths_buffer[82];
-uint64_t filterbank_work_buffer[328];
-float center_mel_freqs_buffer[164];
-int16_t actual_channel_starts_buffer[82];
-int16_t actual_channel_widths_buffer[82];
-int16_t weight_index_start_buffer[5056];
-int16_t unweight_index_start_buffer[5056];
+static int16_t channel_frequency_starts_buffer[82];
+static int16_t channel_weight_starts_buffer[82];
+static int16_t channel_widths_buffer[82];
+static uint64_t filterbank_work_buffer[328];
+static float center_mel_freqs_buffer[164];
+static int16_t actual_channel_starts_buffer[82];
+static int16_t actual_channel_widths_buffer[82];
+static int16_t weight_index_start_buffer[5056];
+static int16_t unweight_index_start_buffer[5056];
 
 void FilterbankFillConfigWithDefaults(struct FilterbankConfig* config) {
   config->num_channels = 32;
