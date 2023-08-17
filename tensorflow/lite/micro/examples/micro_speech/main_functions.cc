@@ -127,14 +127,14 @@ void loop() {
 	int how_many_new_slices = 0;
 	const int32_t current_time = LatestAudioTimestamp();
 	  TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
-	      4000, 4970, &how_many_new_slices);
+	      0, 970, &how_many_new_slices);
 	  if (feature_status != kTfLiteOk || how_many_new_slices != kFeatureSliceCount) {
 	     MicroPrintf("Feature generation failed");
 	     return;
 	   }
 	  for (int i = 0; i < kFeatureElementCount; ++i) {
 		  //MicroPrintf("%d", feature_buffer[i]);
-	     if(g_no_micro_f9643d42_nohash_4_data[i]!=
+	     if(g_yes_micro_f2e59fea_nohash_1_data[i]!=
 	                             feature_buffer[i]){
 	    	 MicroPrintf("Fail");
 	     }
