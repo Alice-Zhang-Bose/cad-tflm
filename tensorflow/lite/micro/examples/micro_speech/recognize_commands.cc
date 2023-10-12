@@ -53,25 +53,26 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
     return kTfLiteError;
   }
 
-  if ((!previous_results_.empty()) &&
+  /*if ((!previous_results_.empty()) &&
       (current_time_ms < previous_results_.front().time_)) {
     MicroPrintf(
         "Results must be fed in increasing time order, but received a "
         "timestamp of %d that was earlier than the previous one of %d",
         current_time_ms, previous_results_.front().time_);
     return kTfLiteError;
-  }
+  }*/
 
   // Add the latest results to the head of the queue.
-  previous_results_.push_back({current_time_ms, latest_results->data.int8});
+  //previous_results_.push_back({current_time_ms, latest_results->data.int8});
 
   // Prune any earlier results that are too old for the averaging window.
-  const int64_t time_limit = current_time_ms - average_window_duration_ms_;
-  while ((!previous_results_.empty()) &&
-         previous_results_.front().time_ < time_limit) {
+  //const int64_t time_limit = current_time_ms - average_window_duration_ms_;
+  while (!previous_results_.empty()){
+	  //&&
+        // previous_results_.front().time_ < time_limit) {
     previous_results_.pop_front();
   }
-
+  previous_results_.push_back({current_time_ms, latest_results->data.int8});
 
   // If there are too few results, assume the result will be unreliable and
   // bail.
@@ -81,8 +82,8 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
   const int64_t samples_duration = current_time_ms - earliest_time;
   if ((how_many_results < minimum_count_) ||
       (samples_duration < (average_window_duration_ms_ / 4))) {
-	 /*
-    *found_command = previous_top_label_;
+
+    /**found_command = previous_top_label_;
     *score = 0;
     *is_new_command = false;
     MicroPrintf("too few results");
@@ -121,13 +122,18 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
   // If we've recently had another label trigger, assume one that occurs too
   // soon afterwards is a bad result.
   int64_t time_since_last_top;
+
+
   if ((previous_top_label_ == kCategoryLabels[0]) ||
       (previous_top_label_time_ == std::numeric_limits<int32_t>::min())) {
     time_since_last_top = std::numeric_limits<int32_t>::max();
   } else {
     time_since_last_top = current_time_ms - previous_top_label_time_;
+    //added to make the || part of the next if true
+    time_since_last_top =  suppression_ms_ + 1;
   }
-  if ((current_top_score > detection_threshold_) &&
+
+  if ((current_top_score > detection_threshold_)  &&
       ((current_top_label != previous_top_label_) ||
        (time_since_last_top > suppression_ms_))) {
     previous_top_label_ = current_top_label;
@@ -136,6 +142,8 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
   } else {
     *is_new_command = false;
   }
+  //added
+
   *found_command = current_top_label;
   *score = current_top_score;
 
