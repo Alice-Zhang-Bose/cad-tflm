@@ -28,7 +28,8 @@ void setup();
 // Runs one iteration of data gathering and inference. This should be called
 // repeatedly from the application code. The name needs to be loop() for Arduino
 // compatibility.
-void loop();
+void loop1();
+void loop2();
 
 #ifdef __cplusplus
 }

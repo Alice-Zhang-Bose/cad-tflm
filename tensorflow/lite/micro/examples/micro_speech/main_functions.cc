@@ -30,6 +30,8 @@ limitations under the License.
 #include "micro_features/yes_micro_features_data.h"
 #include "micro_features/no_micro_features_data.h"
 
+
+
 // Globals, used for compatibility with Arduino-style sketches.
 namespace {
 const tflite::Model* model = nullptr;
@@ -48,6 +50,7 @@ int8_t feature_buffer[kFeatureElementCount];
 //int8_t* feature_buffer = (int8_t *)g_no_micro_f9643d42_nohash_4_data;
 //int8_t* feature_buffer = (int8_t *)g_yes_micro_f2e59fea_nohash_1_data;
 int8_t* model_input_buffer = nullptr;
+
 }  // namespace
 
 // The name of this function is important for Arduino compatibility.
@@ -121,7 +124,7 @@ void setup() {
 }
 
 // The name of this function is important for Arduino compatibility.
-void loop() {
+void loop1() {
 	/*
   // Fetch the spectrogram for the current time.
 //Testing feature generator -- added code to test the feature provider from mock_feature_test.cc
@@ -149,6 +152,7 @@ void loop() {
   //const int32_t current_time = LatestAudioTimestamp();
   const int32_t current_time = 970;
   int how_many_new_slices = 0;
+
   TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
       previous_time, current_time, &how_many_new_slices);
   if (feature_status != kTfLiteOk) {
@@ -170,6 +174,10 @@ void loop() {
     model_input_buffer[i] = feature_buffer[i];
   }
 
+
+}
+
+void loop2(){
   // Run the model on the spectrogram input and make sure it succeeds.
   TfLiteStatus invoke_status = interpreter->Invoke();
   if (invoke_status != kTfLiteOk) {
@@ -184,7 +192,7 @@ void loop() {
   uint8_t score = 0;
   bool is_new_command = false;
   TfLiteStatus process_status = recognizer->ProcessLatestResults(
-      output, current_time, &found_command, &score, &is_new_command);
+      output, 970, &found_command, &score, &is_new_command);
   if (process_status != kTfLiteOk) {
     MicroPrintf("RecognizeCommands::ProcessLatestResults() failed");
     return;
@@ -192,6 +200,6 @@ void loop() {
   // Do something based on the recognized command. The default implementation
   // just prints to the error console, but you should replace this with your
   // own function for a real application.
-  RespondToCommand(current_time, found_command, score, is_new_command);
+  RespondToCommand(970, found_command, score, is_new_command);
 
 }
