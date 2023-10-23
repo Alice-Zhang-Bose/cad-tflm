@@ -33,7 +33,8 @@ TfLiteStatus GetAudioSamples(int start_ms, int duration_ms,
                              int* audio_samples_size, int16_t** audio_samples);
 //extern int16_t dummy_audio_data[512];
 
-extern int16_t bigBuf[16384];
+extern int16_t bigBuf[16000];
+//extern int16_t bigBuf[2048];
 
 // Returns the time that audio data was last captured in milliseconds. There's
 // no contract about what time zero represents, the accuracy, or the granularity
