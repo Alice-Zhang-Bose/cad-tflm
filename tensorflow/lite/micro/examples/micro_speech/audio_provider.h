@@ -32,7 +32,6 @@ limitations under the License.
 TfLiteStatus GetAudioSamples(int start_ms, int duration_ms,
                              int* audio_samples_size, int16_t** audio_samples);
 //extern int16_t dummy_audio_data[512];
-
 extern int16_t bigBuf[16000];
 //extern int16_t bigBuf[2048];
 
