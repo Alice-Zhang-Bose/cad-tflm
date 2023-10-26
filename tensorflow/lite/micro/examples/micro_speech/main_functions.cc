@@ -149,8 +149,8 @@ void loop() {
 */
 
 
-  const int32_t current_time = LatestAudioTimestamp();
-  //const int32_t current_time = 970;
+  //const int32_t current_time = LatestAudioTimestamp();
+  const int32_t current_time = 970;
   int how_many_new_slices = 0;
 
   TfLiteStatus feature_status = feature_provider->PopulateFeatureData(
@@ -159,8 +159,8 @@ void loop() {
     MicroPrintf("Feature generation failed");
     return;
   }
-  previous_time = current_time;
-  //previous_time = 0;
+ // previous_time = current_time;
+  previous_time = 0;
 
   // If no new audio samples have been received since last time, don't bother
   // running the network model.

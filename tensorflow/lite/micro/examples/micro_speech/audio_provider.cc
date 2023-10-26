@@ -46,7 +46,7 @@ TfLiteStatus GetAudioSamples(int start_ms, int duration_ms,
 	//const int duration_sample_count = duration_ms * (kAudioSampleFrequency / 1000);
 
 	 for (int i = 0; i <kMaxAudioSampleSize; ++i) {
-		 sample_index = (start_sample + i) % 16000; //can cause issues because of wrapping around
+		 sample_index = (start_sample + i) % 16384; //can cause issues because of wrapping around
 		 g_dummy_audio_data[i] = bigBuf[sample_index];
 
 	 }
@@ -86,6 +86,6 @@ TfLiteStatus GetAudioSamples(int start_ms, int duration_ms,
 
 */
 int32_t LatestAudioTimestamp() {
-  g_latest_audio_timestamp += (128*2)-20; //2048*1000/16000
+  g_latest_audio_timestamp += 32;
   return g_latest_audio_timestamp;
 }

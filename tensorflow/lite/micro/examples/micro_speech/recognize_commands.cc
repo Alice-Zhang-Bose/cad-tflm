@@ -53,7 +53,8 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
     return kTfLiteError;
   }
 
-  if ((!previous_results_.empty()) &&
+  /*
+   if ((!previous_results_.empty()) &&
       (current_time_ms < previous_results_.front().time_)) {
     MicroPrintf(
         "Results must be fed in increasing time order, but received a "
@@ -61,16 +62,18 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
         current_time_ms, previous_results_.front().time_);
     return kTfLiteError;
   }
+  */
 
   // Add the latest results to the head of the queue.
-  previous_results_.push_back({current_time_ms, latest_results->data.int8});
+  //previous_results_.push_back({current_time_ms, latest_results->data.int8});
 
   // Prune any earlier results that are too old for the averaging window.
-  const int64_t time_limit = current_time_ms - average_window_duration_ms_;
-  while ((!previous_results_.empty()) && (previous_results_.front().time_ < time_limit)) {
+  //const int64_t time_limit = current_time_ms - average_window_duration_ms_;
+  while (!previous_results_.empty()) {
+		  //&& (previous_results_.front().time_ < time_limit)) {
     previous_results_.pop_front();
   }
- // previous_results_.push_back({current_time_ms, latest_results->data.int8});
+  previous_results_.push_back({current_time_ms, latest_results->data.int8});
 
   // If there are too few results, assume the result will be unreliable and
   // bail.
@@ -80,12 +83,13 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
   const int64_t samples_duration = current_time_ms - earliest_time;
   if ((how_many_results < minimum_count_) ||
       (samples_duration < (average_window_duration_ms_ / 4))) {
-
+/*
     *found_command = previous_top_label_;
     *score = 0;
     *is_new_command = false;
     MicroPrintf("too few results");
     return kTfLiteOk;
+    */
   }
 
   // Calculate the average score across all the results in the window.
@@ -128,7 +132,7 @@ TfLiteStatus RecognizeCommands::ProcessLatestResults(
   } else {
     time_since_last_top = current_time_ms - previous_top_label_time_;
     //added to make the || part of the next if true
-   // time_since_last_top =  suppression_ms_ + 1;
+    time_since_last_top =  suppression_ms_ + 1;
   }
 
   if ((current_top_score > detection_threshold_)  &&
